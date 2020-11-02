@@ -227,12 +227,12 @@ def fraction(value = 0, maxDen = 16, unit = "IN"):
 
 
 # Main section
-JobInformation = {'Job': "ERP_trial-2",
+JobInformation = {'Job': "1320",
                   'Job Suffix': "0",
-                  'Item': "M76EX-3HP",
-                  'Released': 2,
-                  "Issue Date": "10/1/2020",
-                  "Complete Date": "10/31/2020",
+                  'Item': "M76EX-18L",
+                  'Released': 1,
+                  "Issue Date": "11/2/2021",
+                  "Complete Date": "11/2/2021",
                   "Prepared": "Auto",
                   "Checked": "",
                   "Appr": " "}
@@ -604,10 +604,17 @@ shopOrderHTML.write("{}_{}.html".format(JobInformation['Job'], JobInformation['J
 
 
 
+#
+# Section for alternate shop order view
+#
 
-
-
-
+shopOrder_PartView = copy.deepcopy(shopOrderDetails)
+# make a unique operation identifier that is smallest to largest in operation order
+shopOrder_PartView['opOrder'] = shopOrder_PartView['Major']*max(shopOrder_PartView['Minor']) + shopOrder_PartView['Minor']
+# use the smallest operation identifier for each item as the part identifier
+shopOrder_PartView['partOrder'] = shopOrder_PartView['opOrder'].apply(lambda x: min(shopOrder_PartView.loc[shopOrder_PartView['item'] == shopOrder_PartView.loc[shopOrder_PartView['opOrder'] == x, :]['item'].iloc[0],:]['opOrder']))
+#sort them to iterate sequentially to generate shop order
+shopOrder_PartView = shopOrder_PartView.sort_values(['partOrder', 'opOrder'])
 
 
 
