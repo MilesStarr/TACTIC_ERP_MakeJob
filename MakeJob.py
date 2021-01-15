@@ -227,13 +227,13 @@ def fraction(value = 0, maxDen = 16, unit = "IN"):
 
 
 # Main section
-JobInformation = {'Job': "1320",
+JobInformation = {'Job': "J000008010",
                   'Job Suffix': "0",
-                  'Item': "M76EX-18L",
+                  'Item': "M411KD",
                   'Released': 1,
-                  "Issue Date": "11/2/2021",
-                  "Complete Date": "11/2/2021",
-                  "Prepared": "Auto",
+                  "Issue Date": "1/15/2021",
+                  "Complete Date": "1/22/2021",
+                  "Prepared": "HH",
                   "Checked": "",
                   "Appr": " "}
 
