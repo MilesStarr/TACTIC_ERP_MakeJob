@@ -245,7 +245,7 @@ notDone = True
 counter = 0
 neededHistory = []
 #Fetch lower tiers of BOMs
-while notDone and (counter < 20): #Infor ERP has a tier limit of 20, so don't try too hard
+while notDone and (counter < 30): #Infor ERP has a tier limit of 20, so don't try too hard
     counter += 1
     neededMaterials = []
     for matRow in matListPD.itertuples():
@@ -421,7 +421,7 @@ for milestone in milestones:
 
 #populate Job Materials
 seq = {m: 1 for m in milestones}
-for matIndex, material in jobOrderDetails.query("material != ''").iterrows():
+for matIndex, material in jobOrderDetails.query("material != '' & matl_product_code != 'TT-MfgStep'").iterrows():
     tempMat = {'Job': JobInformation['Job'], 'Job Suffix': JobInformation['Job Suffix'],
                'Item': JobInformation['Item'],
                'Released': JobInformation['Released'],
